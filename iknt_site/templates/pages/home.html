@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}Главная - ИКНТ ПГНИУ{% endblock %}
+
+{% block content %}
+<h2>Последние новости</h2>
+<div class="news-list">
+    {% for news in latest_news %}
+    <div class="news-item">
+        {% if news.image %}
+        <div class="news-image">
+            <img src="{{ news.image.url }}" alt="{{ news.title }}">
+        </div>
+        {% endif %}
+        <div class="news-content">
+            <h3 class="news-title">{{ news.title }}</h3>
+            <p class="news-date">{{ news.published_date|date:"d.m.Y" }}</p>
+            <p>{{ news.content|truncatewords:30 }}</p>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
